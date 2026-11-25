@@ -1,0 +1,353 @@
+:root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface-2: #1a1a24;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-hover: rgba(255, 255, 255, 0.15);
+    --text: #f0f0f8;
+    --text-muted: #6b6b8a;
+    --accent: #7c6aff;
+    --accent-2: #ff6a9e;
+    --accent-glow: rgba(124, 106, 255, 0.25);
+    --radius: 16px;
+    --font-display: "Inter", sans-serif;
+    --font-body: "Inter", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-display);
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    background-image:
+        radial-gradient(ellipse 60% 40% at 20% 0%, rgba(124, 106, 255, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 80% 100%, rgba(255, 106, 158, 0.08) 0%, transparent 60%);
+}
+
+.container {
+    max-width: 960px;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #f0f0f8 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-tag {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--accent);
+    background: rgba(124, 106, 255, 0.12);
+    border: 1px solid rgba(124, 106, 255, 0.3);
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 6px 14px 6px 10px;
+    border-radius: 40px;
+}
+
+.toggle-label {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    user-select: none;
+}
+
+.toggle-label.active {
+    color: var(--accent);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: var(--surface-2);
+    border: 1px solid var(--border-hover);
+    border-radius: 34px;
+    transition: 0.3s ease;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+input:checked+.slider {
+    background: rgba(124, 106, 255, 0.2);
+    border-color: rgba(124, 106, 255, 0.5);
+}
+
+input:checked+.slider::before {
+    transform: translateX(20px);
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Grid */
+.timezone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Card */
+.tz-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+    animation: fadeUp 0.5s ease both;
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-meta h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.tz-id {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-light);
+  opacity: 0.8;
+  letter-spacing: 0.01em;
+  margin-top: -1rem;
+}
+
+.tz-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.tz-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.tz-card:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tz-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 120% 80% at 50% -20%, rgba(124, 106, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.tz-card:hover {
+    border-color: rgba(124, 106, 255, 0.35);
+    box-shadow: 0 0 0 1px rgba(124, 106, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.tz-card h2 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    /* color: var(--text-muted); */
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tz-card h2::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+    flex-shrink: 0;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="date"],
+select {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+input[type="date"]:hover,
+select:hover {
+    border-color: var(--border-hover);
+    background: #20202e;
+}
+
+input[type="date"]:focus,
+select:focus {
+    border-color: rgba(124, 106, 255, 0.6);
+    background: #20202e;
+    box-shadow: 0 0 0 3px rgba(124, 106, 255, 0.12);
+}
+
+/* Webkit date picker color */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.6) sepia(1) saturate(3) hue-rotate(200deg);
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+.time-selectors {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.time-selectors select {
+    flex: 1;
+    text-align: center;
+}
+
+.separator {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+/* Divider line between date and time */
+.input-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 2px 0;
+}
+
+footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    /* color: var(--text-muted); */
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 1.5rem 1rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}

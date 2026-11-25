@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeSync - Time Converter</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/plugin/utc.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/plugin/timezone.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <h1><i class="bi bi-clock"></i>&nbsp;&nbsp;TimeSync</h1>
+      <div class="toggle-group">
+        <span>12H</span>
+        <label class="switch">
+          <input type="checkbox" id="format-toggle">
+          <span class="slider"></span>
+        </label>
+        <span>24H</span>
+      </div>
+    </header>
+
+    <main class="timezone-grid" id="timezone-container">
+    </main>
+    <br />
+    <footer>Auto-adjusts for DST.<br />by carlo / version: 1.1</footer>
+  </div>
+  <script src="/script.js"></script>
+</body>
+
+</html>
